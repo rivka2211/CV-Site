@@ -20,5 +20,13 @@ namespace CV_Site.API.Controllers
             var portfolio = await _gitHubService.GetPortfolioAsync();
             return Ok(portfolio);
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchRepositories([FromQuery] string? repositoryName, [FromQuery] string? language, [FromQuery] string? username)
+        {
+            var results = await _gitHubService.SearchRepositoriesAsync(repositoryName, language, username);
+            return Ok(results);
+        }
+
     }
 }

@@ -11,5 +11,7 @@ namespace CV_Site.Service
 
         Task<List<PortfolioRepository>> GetPortfolioAsync();
 
+        Task<List<PortfolioRepository>> SearchRepositoriesAsync(string? repositoryName, string? language, string? username);
+
     }
 }
