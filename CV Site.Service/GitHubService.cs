@@ -1,4 +1,5 @@
-﻿using Octokit;
+﻿using Microsoft.Extensions.Configuration;
+using Octokit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,12 @@ namespace CV_Site.Service
     public class GitHubService : IGitHubService
     {
         private readonly GitHubClient _client;
-        public GitHubService()
+        private readonly IConfiguration _configuration;
+
+        public GitHubService(IConfiguration configuration)
         {
             _client = new GitHubClient(new ProductHeaderValue("rivka2211"));
+            _configuration = configuration;
         }
 
         public async Task<int> GetUserFollowesAsync(string userName)
