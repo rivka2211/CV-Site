@@ -1,4 +1,5 @@
 using CV_Site.Service;
+using CV_Site.Service.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
