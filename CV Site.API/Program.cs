@@ -1,3 +1,4 @@
+using CV_Site.API.CachedServices;
 using CV_Site.Service;
 using CV_Site.Service.Entities;
 
@@ -10,8 +11,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.Configure<GitHubOptions>(builder.Configuration.GetSection(nameof(GitHubOptions)));
+builder.Services.AddMemoryCache();
+
 builder.Services.AddgitHubIntegration(optins => builder.Configuration.GetSection(nameof(GitHubOptions)).Bind(optins));
+builder.Services.AddScoped<IGitHubService, GitHubService>();
+builder.Services.Decorate<IGitHubService, CachedGitHubService>();
+
+//builder.Services.Configure<GitHubOptions>(builder.Configuration.GetSection(nameof(GitHubOptions)));
 
 var app = builder.Build();
 
